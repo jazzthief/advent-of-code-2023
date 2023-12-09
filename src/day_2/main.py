@@ -84,5 +84,29 @@ def part_1_solve_naive() -> int:
     return result
 
 
+def part_2_solve_naive() -> int:
+    input_path = Path.cwd() / "input.txt"
+    games_generator = read_games(input_path)
+
+    result = 0
+    game_n = 1
+    for game in games_generator:
+        print("--------------------------")
+        print(f"Game {game_n}")
+        print(f"{game}\n")
+
+
+        min_red = max([d.get("red", 1) for d in game])
+        min_green = max([d.get("green", 1) for d in game])
+        min_blue = max([d.get("blue", 1) for d in game])
+        print(f"red: {min_red}, green: {min_green}, blue: {min_blue}")
+
+        result += min_red * min_green * min_blue
+        game_n += 1
+
+
+    return result
+
+
 if __name__ == "__main__":
-    print(part_1_solve_naive())
+    print(part_2_solve_naive())
